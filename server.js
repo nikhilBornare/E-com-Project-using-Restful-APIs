@@ -1,10 +1,9 @@
 import express from "express";
-import * as ProductRouter from "./src/features/product/product.routes";
-
+import productRouter from "./src/features/product/product.routes.js";
 const server = express();
 
 // for all requests related to products, redirect to product routes
-server.use("/api/products", ProductRouter);
+server.use("/api/products", productRouter);
 
 server.get("/", (req, res) => {
   res.send("Welcome to Ecommerce Apis");
