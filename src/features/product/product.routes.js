@@ -10,6 +10,11 @@ const productController = new ProductController();
 
 // All the paths to controller methods.
 
+// get method to filter products
+// localhost:3200/api/products/filter?minPrice=10&maxPrice=20&category=Category1
+
+productRouter.get("/filter", productController.filterProducts);
+
 // get method to fetch all products
 productRouter.get("/", productController.getAllProducts);
 
