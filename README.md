@@ -1,6 +1,6 @@
 # E-Commerce Backend Project
 
-This project is a backend for an E-Commerce platform implemented using RESTful APIs. The application is designed to handle various functionalities essential for an online shopping platform, such as product management, user management, cart management, and order management.
+This project is a backend for an E-Commerce platform implemented using RESTful APIs. The application is designed to handle various functionalities essential for an online shopping platform, such as Product Management, User Management, Cart Management, and Order Management.
 
 ## Features
 
