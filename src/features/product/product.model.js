@@ -8,13 +8,18 @@ export default class ProductModel {
     this.category = category;
     this.sizes = sizes;
   }
-  static add(product){
+  static add(product) {
     product.id = products.length + 1;
     products.push(product);
     return product;
   }
 
-  static GetAll() {
+  static get(id) {
+    const product = products.find((i) => i.id == id);
+    return product;
+  }
+
+  static getAll() {
     return products;
   }
 }
