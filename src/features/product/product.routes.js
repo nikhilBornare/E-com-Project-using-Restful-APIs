@@ -9,10 +9,11 @@ const productRouter = express.Router();
 const productController = new ProductController();
 
 // All the paths to controller methods.
+// post method to rate products
+productRouter.post("/rate", productController.rateProduct);
 
 // get method to filter products
 // localhost:3200/api/products/filter?minPrice=10&maxPrice=20&category=Category1
-
 productRouter.get("/filter", productController.filterProducts);
 
 // get method to fetch all products

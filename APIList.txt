@@ -1,6 +1,13 @@
 ProductController
 
-Get Products
-Add a Product
-Get one Product by ID
-Filter Product
+Get Products - Done
+Add a Product - Done
+Get one Product by ID- Done
+Filter Product - Done
+Rate Product
+Add items to cart 
+Get items of cart 
+
+UserController 
+signup - Email,Name,Password,TypeOfUser(Customer,Seller) - Done
+signin - (Email,Password) - Done
