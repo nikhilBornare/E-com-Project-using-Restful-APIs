@@ -10,22 +10,22 @@ export default class ProductModel {
     this.price = price;
     this.sizes = sizes;
   }
-
+  // add product
   static add(product) {
     product.id = products.length + 1;
     products.push(product);
     return product;
   }
-
+  // get product by ID
   static get(id) {
     const product = products.find((i) => i.id == id);
     return product;
   }
-
+  // get all products
   static getAll() {
     return products;
   }
-
+  // filter products
   static filter(minPrice, maxPrice, category) {
     const result = products.filter((product) => {
       return (
@@ -36,7 +36,7 @@ export default class ProductModel {
     });
     return result;
   }
-
+  // rateProduct
   static rateProduct(userID, productID, rating) {
     // 1. Validate user and product
     const user = UserModel.getAll().find((u) => u.id == userID);
@@ -50,31 +50,36 @@ export default class ProductModel {
       return "Product not found";
     }
 
-    // 2. Check if there are any ratings and if not then add ratings array.
+    // 2. Validate rating value (assuming ratings are between 1 and 5)
+    if (rating < 1 || rating > 5) {
+      return "Rating must be between 1 and 5";
+    }
+
+    // 3. Check if there are any ratings and if not, add ratings array
     if (!product.ratings) {
       product.ratings = [];
+    }
+
+    // 4. Check if user has already rated the product
+    const existingRatingIndex = product.ratings.findIndex(
+      (r) => r.userID == userID
+    );
+
+    if (existingRatingIndex >= 0) {
+      // 5. Update existing rating if found
+      product.ratings[existingRatingIndex] = {
+        userID: userID,
+        rating: rating,
+      };
+    } else {
+      // 6. Add new rating if not already rated
       product.ratings.push({
         userID: userID,
         rating: rating,
       });
-    } else {
-      // 3. Check if user rating is already available.
-      const existingRatingIndex = product.rating.findIndex(
-        (r) => r.userID == userID
-      );
-      if (existingRatingIndex >= 0) {
-        product.ratings[existingRatingIndex] = {
-          userID: userID,
-          rating: rating,
-        };
-      } else {
-        // 4. if no exisitng rating, then add new rating.
-        product.ratings.push({
-          userID: userID,
-          rating: rating,
-        });
-      }
     }
+
+    return "Rating added/updated successfully";
   }
 }
 
