@@ -60,7 +60,7 @@ This project is a backend for an E-Commerce platform implemented using RESTful A
    npm start
    ```
 
-6. Access the application at `http://localhost:3000`.
+6. Access the application at `http://localhost:3200`.
 
 ## API Endpoints
 
