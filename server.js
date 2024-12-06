@@ -7,6 +7,7 @@ import userRouter from "./src/features/user/user.routes.js";
 import jwtAuth from "./src/middlewares/jwt.middleware.js";
 import cartRouter from "./src/features/cartItems/cartItems.routes.js";
 import apiDocs from "./swagger.json" assert { type: "json" };
+import loggerMiddleware from "./src/middlewares/logger.middleware.js";
 
 // 2. Create Server
 const server = express();
@@ -19,6 +20,8 @@ server.use(express.json());
 
 server.use("/api-docs", swagger.serve, swagger.setup(apiDocs));
 
+server.use(loggerMiddleware)
+
 server.use("/api/products", jwtAuth, productRouter);
 
 server.use("/api/cartItems", jwtAuth, cartRouter);
@@ -30,7 +33,12 @@ server.get("/", (req, res) => {
   res.send("Welcome to Ecommerce APIs");
 });
 
-// 4. Specify port.
-server.listen(3200);
+// 4. Middleware to handle 404 requests.
+server.use((req, res)=>{
+  res.status(404).send("API not found. Please check our documentation for more information at localhost:3200/api-docs")
+});
 
+
+// 5. Specify port.
+server.listen(3200);
 console.log("Server is running at 3200");
