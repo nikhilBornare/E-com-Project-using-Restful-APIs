@@ -5,7 +5,7 @@ const fsPromise = fs.promises;
 async function log(logData) {
   try {
     logData = `\n ${new Date().toString()} - ${logData}`;
-    await fsPromise.writeFile("log.txt", logData);
+    await fsPromise.appendFile("log.txt", logData);
   } catch (err) {
     console.log(err);
   }

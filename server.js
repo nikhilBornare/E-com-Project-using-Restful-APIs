@@ -20,7 +20,7 @@ server.use(express.json());
 
 server.use("/api-docs", swagger.serve, swagger.setup(apiDocs));
 
-server.use(loggerMiddleware)
+server.use(loggerMiddleware);
 
 server.use("/api/products", jwtAuth, productRouter);
 
@@ -34,10 +34,13 @@ server.get("/", (req, res) => {
 });
 
 // 4. Middleware to handle 404 requests.
-server.use((req, res)=>{
-  res.status(404).send("API not found. Please check our documentation for more information at localhost:3200/api-docs")
+server.use((req, res) => {
+  res
+    .status(404)
+    .send(
+      "API not found. Please check our documentation for more information at localhost:3200/api-docs"
+    );
 });
-
 
 // 5. Specify port.
 server.listen(3200);
